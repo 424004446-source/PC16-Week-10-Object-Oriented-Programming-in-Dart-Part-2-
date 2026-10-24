@@ -1,0 +1,5 @@
+mixin WirelessCharging {
+  void chargeWirelessly() {
+    print('Wireless Charging: Fast charging on induction pad at 15W...');
+  }
+}
