@@ -1,0 +1,39 @@
+abstract class Cellphone extends ElectronicDevice {
+  String _speaker;
+  String camera;
+  String keyboard;
+
+  Cellphone({
+    required String speaker,
+    required this.camera,
+    required this.keyboard,
+  }) : _speaker = speaker;
+
+  String get speaker => _speaker;
+
+  set speaker(String newSpeaker) {
+    if (newSpeaker.trim().isNotEmpty) {
+      _speaker = newSpeaker;
+    } else {
+      print('Error: Speaker description cannot be empty.');
+    }
+  }
+
+  void tookAPhoto() {
+    print('Camera ($camera): Took a standard photo.');
+  }
+
+  void sendMessage(String message) {
+    print('Keyboard ($keyboard): Sent message -> "$message"');
+  }
+
+  void playsAMusic(String song) {
+    print('Speaker ($_speaker): Playing audio -> "$song"');
+  }
+
+  void executeAllBehaviors(String message, String song) {
+    tookAPhoto();
+    sendMessage(message);
+    playsAMusic(song);
+  }
+}
