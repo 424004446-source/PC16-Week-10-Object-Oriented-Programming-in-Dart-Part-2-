@@ -1,0 +1,165 @@
+abstract class ElectronicDevice {
+  void bootUp();
+}
+
+
+abstract class Cellphone extends ElectronicDevice {
+  String _speaker;
+  String camera;
+  String keyboard;
+
+  Cellphone({
+    required String speaker,
+    required this.camera,
+    required this.keyboard,
+  }) : _speaker = speaker;
+
+  String get speaker => _speaker;
+
+  set speaker(String newSpeaker) {
+    if (newSpeaker.trim().isNotEmpty) {
+      _speaker = newSpeaker;
+    } else {
+      print('Error: Speaker description cannot be empty.');
+    }
+  }
+
+  void tookAPhoto() {
+    print('Camera ($camera): Took a standard photo!');
+  }
+
+  void sendMessage(String message) {
+    print('Keyboard ($keyboard): Sent message -> "$message"');
+  }
+
+  void playsAMusic(String song) {
+    print('Speaker ($_speaker): Playing audio -> "$song"');
+  }
+
+  void executeAllBehaviors(String message, String song) {
+    tookAPhoto();
+    sendMessage(message);
+    playsAMusic(song);
+  }
+}
+
+
+mixin WirelessCharging {
+  void chargeWirelessly() {
+    print('Wireless Charging: Fast charging on induction pad at 15W...');
+  }
+}
+
+class Smartphone extends Cellphone with WirelessCharging {
+  double screenSize;
+
+  Smartphone({
+    required String speaker,
+    required String camera,
+    required String keyboard,
+    required this.screenSize,
+  }) : super(speaker: speaker, camera: camera, keyboard: keyboard);
+
+  @override
+  void bootUp() {
+    print('OS Boot: Loading Smart OS on $screenSize-inch AMOLED display...');
+  }
+  
+  @override
+  void tookAPhoto() {
+    print('Camera ($camera): Captured 4K Ultra-HD photo with AI HDR!');
+  }
+
+  @override
+  void playsAMusic(String song) {
+    print('Speaker ($speaker): Streaming Dolby Atmos Lossless Audio -> "$song"');
+  }
+}
+
+class FeaturePhone extends Cellphone {
+  bool hasFMCard;
+
+  FeaturePhone({
+    required String speaker,
+    required String camera,
+    required String keyboard,
+    required this.hasFMCard,
+  }) : super(speaker: speaker, camera: camera, keyboard: keyboard);
+
+  @override
+  void bootUp() {
+    print('OS Boot: Powering on retro firmware system...');
+  }
+
+  @override
+  void tookAPhoto() {
+    print('Camera ($camera): Captured 0.3MP VGA snapshot.');
+  }
+
+  @override
+  void playsAMusic(String song) {
+    print('Speaker ($speaker): Playing 8-bit Polyphonic ringtone -> "$song"');
+  }
+}
+
+
+void main() {
+  print('================================================================');
+  print('       PC16 WEEK 10 - ENHANCED CELLPHONE OOP APPLICATION        ');
+  print('================================================================\n');
+
+  Smartphone phone1 = Smartphone(
+    speaker: 'Stereo Dual Speakers',
+    camera: '200 MP Quad Camera',
+    keyboard: 'On-Screen Touch QWERTY',
+    screenSize: 6.7,
+  );
+
+  FeaturePhone phone2 = FeaturePhone(
+    speaker: 'Mono Rear Speaker',
+    camera: 'VGA Camera',
+    keyboard: 'Physical T9 Keypad',
+    hasFMCard: true,
+  );
+
+  List<Cellphone> phoneCollection = [phone1, phone2];
+
+  for (int i = 0; i < phoneCollection.length; i++) {
+    Cellphone currentPhone = phoneCollection[i];
+    print('--- Cellphone Unit ${i + 1} [${currentPhone.runtimeType}] ---');
+
+    currentPhone.bootUp();
+
+    print('Speaker Spec:  ${currentPhone.speaker}');
+    print('Camera Spec:   ${currentPhone.camera}');
+    print('Keyboard Spec: ${currentPhone.keyboard}');
+
+    print('\n[ Executing Behaviors in 1 Execution ]');
+    currentPhone.executeAllBehaviors(
+      'Message from Unit ${i + 1}',
+      'Track #${i + 1}',
+    );
+
+    // Mixin usage check
+    if (currentPhone is WirelessCharging) {
+      print('\n[ Unique Mixin Capability ]');
+      (currentPhone as WirelessCharging).chargeWirelessly();
+    }
+    print('');
+  }
+
+  print('----------------------------------------------------------------');
+  print('--- Encapsulation & Map Collection Access Test ---');
+
+  Map<String, Cellphone> inventory = {
+    'SMART-01': phone1,
+    'FEAT-01': phone2,
+  };
+
+  // Encapsulation test via setter
+  inventory['SMART-01']?.speaker = 'Harman Kardon Quad Speakers';
+  print('Updated Speaker for SMART-01: ${inventory['SMART-01']?.speaker}\n');
+
+  inventory['SMART-01']?.executeAllBehaviors('Test Message', 'Hi-Res Audio');
+  print('================================================================');
+}
