@@ -1,0 +1,54 @@
+Derived Class 1
+
+class Smartphone extends Cellphone with WirelessCharging {
+  double screenSize;
+
+  Smartphone({
+    required String speaker,
+    required String camera,
+    required String keyboard,
+    required this.screenSize,
+  }) : super(speaker: speaker, camera: camera, keyboard: keyboard);
+
+  @override
+  void bootUp() {
+    print('OS Boot: Initializing Smart OS on $screenSize-inch AMOLED display...');
+  }
+
+  @override
+  void tookAPhoto() {
+    print('Camera ($camera): Captured 4K Ultra-HD photo with AI HDR!');
+  }
+
+  @override
+  void playsAMusic(String song) {
+    print('Speaker ($speaker): Streaming Dolby Atmos Lossless Audio -> "$song"');
+  }
+
+  Derived Class 2
+
+    class FeaturePhone extends Cellphone {
+  bool hasFMCard;
+
+  FeaturePhone({
+    required String speaker,
+    required String camera,
+    required String keyboard,
+    required this.hasFMCard,
+  }) : super(speaker: speaker, camera: camera, keyboard: keyboard);
+
+  @override
+  void bootUp() {
+    print('OS Boot: Powering on retro firmware system...');
+  }
+
+  @override
+  void tookAPhoto() {
+    print('Camera ($camera): Captured 0.3MP VGA snapshot.');
+  }
+
+  @override
+  void playsAMusic(String song) {
+    print('Speaker ($speaker): Playing 8-bit Polyphonic ringtone -> "$song"');
+  }
+}
