@@ -1,0 +1,8 @@
+| Label | Class | Original Target | Overridden Method | Custom Output / Behavior |
+| :--- | :--- | :--- | :--- | :--- |
+| **`[OVERRIDE 1]`** | `Smartphone` | `ElectronicDevice` | `bootUp()` | Displays Smart OS loading on AMOLED display
+| **`[OVERRIDE 2]`** | `Smartphone` | `Cellphone` | `tookAPhoto()` | Captures 4K Ultra-HD photo with AI HDR
+| **`[OVERRIDE 3]`** | `Smartphone` | `Cellphone` | `playsAMusic()` | Streams Dolby Atmos Lossless Audio
+| **`[OVERRIDE 4]`** | `FeaturePhone` | `ElectronicDevice` | `bootUp()` | Powers on retro firmware system
+| **`[OVERRIDE 5]`** | `FeaturePhone` | `Cellphone` | `tookAPhoto()` | Captures 0.3MP VGA snapshot
+| **`[OVERRIDE 6]`** | `FeaturePhone` | `Cellphone` | `playsAMusic()` | Plays 8-bit Polyphonic ringtone
